@@ -1,0 +1,55 @@
+language: node_js
+node_js:
+- node
+python:
+- '3.6'
+cache:
+- pip
+addons:
+  apt:
+    packages:
+    - nodejs-legacy
+branches:
+  only:
+  - master
+  - "/^greenkeeper/.*$/"
+stages:
+- test
+before_install:
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+install:
+- npm install
+jobs:
+  include:
+  - stage: test
+    name: Build demo
+    script: npm run build-demo
+  - stage: test
+    name: Unit test
+    script: npm test
+after_success:
+- cat ./dist/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+- provider: npm
+  email: willem_liu@hotmail.com
+  on:
+    branch: master
+  api_key:
+    secure: Dz6F4QpwM5qzhCxXyPtpFHuAVSsufsNjMxCQcqVUXevuAGH/4FfYm6QJXA5gS0/LMDeXJMLMH2B3RFlotA68pE5bxdmCOoquuARfVK4S9mdtiPnvfFSMrBRg+aztX4gZxSjyNaS7J0PQXN1UDZieD75H5ChsBddh4wDmCrH77vx7vUtLU9V7NZC8t5KnW/M91Ge6aaiH5lDkEQtdMVSF9EBl8yQ4mCxNkflKBti+c0haXrxdLNniVcpYzD3LOY+ub+N4sGoTz4BykvHPOK28J95dcow3PsMhGuSV5UTVRBlgew3sSVgwphrl27cu/Wx6lKI5Y1hsMbjoOY2k4KLP0X7vNoLVkesisUiX2LvJDPM/5Hzx0YmfxMp4jJeJZm47cyaKtLq9oLLX9JGsbx9wjIL5eG+p8ZZCwFCxErZkfFDjhbrKfgOO8h/RGp+FdkHpXfDCL96sm0WVhW8jBD9hnBjjbeF/OI1DGWmhhQ02UjEmWQw5y868V+tP2yuj/P/knMtDkjDKVcy2FhPB3c18EJ8FgAXXxYz9jjBD2Y3Jdl3sJZgep8dFEZvxE+rhxjShmi2GfDvrpFT0uQngCGgP4NsLqllEbrTuqmHTfaWln+WpN2QrKPobSqx5aEHeJTlVbmlcoFbiJmdu7aDVk0/ZIHlNHi3MDWyIZrX4FOpztZ8=
+- provider: s3
+  secret_access_key:
+    secure: BXrVCIkx7md1O4Q3n+8dZ07D7VCYTl1mWpQ6Ko1LOFMe3C4eEh+glRwmXZh4SsW8x4FnfDtaRDmwRcyMS80EOu+eC3otbchxMbMJW41WZPxET3eSsh/CyNLSBWmBG0CMkR+YPQEfUWTec6ZPY9e5Qz50hebG+hv29yHzeWb63LRJpTjtRoTCSzgqKDQta98qjThKfBm829/JPvSCpab3ahDW2tAJ6JdCtL+rI+AfL4P7BDS4SIKijogHk79BzHcWi/Ahwr173L80DisiqafJ7sPxO3ANDkLqaqG1AwuWWo9ma7vZ4DEfjtIq4y0kEhqvNxWYi3L1P4grebrEk/ATOY6yB00SZ3PioeXzivkU9NFnPLfcrDlfYvburOBgfuZYGOhTuCCcAHc7SA88rPGYv+6XFOibqyJdpQxlCXUhL/UvxXloRklKecqd+up2QJtHpvP0ClKLmQNBt9gnnetetFxmbxy6R0zUE1AfIFfso5LeXOT8dCjH+lRQTwjnj5pcBTa/m3pp7izjobShbOYGfihtDOZDJM4ezWinMetRTeMPg8Zq+OseX2LEIVjbKdfVVFeS7qhjOIA7xGOfd6vpoMGAWsxqt82IYS9I4LkASUD/Mg8Uq5AmFSop6sIzy4vbmIe/g8683PC5P0MLMLpxwV8RV3ye/aCPNky6LJW7VvM=
+  access_key_id:
+    secure: ND8NwjoUfJWLrcNAiupJNhW5jZFtsJTyK864XG16vrmLofPJu3Juc2jAHMdlxii83g4gDQJta3BFdRld+70kVGC/dBXqmapelip/oaAOQGGjmyKC/uiLb/U9gh1UFv8DB2kMT7uQR+P3fgAfkNZafy7dLdUBx4BMPC4NWATJiVjCTBNfXUf3n68F5kKyYwLlHJ/sFisrSyU236AoE6oaxzU7XqMkxFtoDXgeGCmeJr3Zl9Go6Ww7j/NGr/ZPWWWqENjAuNhVRRKA3EZIIWR795hE/+yhMOJw0mzmraOMFOqtkmpO2b+FHw5XoTgoE2wu70ZMuJ23d/lnojnn9IQ73xN5LfO6HfzOwS2DJy21mFjoQPU740HSQ9ednJVGEAiEyjpNC1Mx2mDRbh4ePoDibR7HcMmwPlxuhWIRMzKuqM96JZQqKgSmDNaWA/gX6seg9RWVfaN/JxTNkYoHvuJR6ovTrwUnx6Q+eGTknf96irFC8BOAwYBtihHQCvMX40oSugiFaojEB8fBROjdTKvCb9uZNPeI7olK6oziNUZ8UO5GxkCZAnHa5kK+vQL4yMi6GBRJVcm1oTnPu5eUZDWpKPYh+to44ZlhrbuF1M2mvnq6VK3C50ilcuVbHmaOm6MH/1lxRS6QKBhaGBWZueif4WA30fOM6wiXLuCEtmzzTDI=
+  region: eu-west-1
+  bucket: static.fd.nl
+  skip_cleanup: true
+  acl: public_read
+  local_dir: dist
+  upload_dir: react/breaking-news-alert
+  on:
+    branch: master
+after_deploy:
+- aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths
+  "/react/breaking-news-alert/*"

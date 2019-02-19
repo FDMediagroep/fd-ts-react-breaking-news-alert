@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreakingNewsAlert renders correctly 1`] = `
+<div
+  cardStyle="default"
+  className="fd-card fd-breaking-news-alert default"
+>
+  <h3
+    className="fd-typography card-h fd-breaking-news-alert-h"
+    textStyle="card-h"
+  >
+    Breaking nieuws alert
+  </h3>
+  <div
+    className="content"
+  >
+    <span
+      className="description"
+    >
+      Ontvang een e-mail alert bij belangrijk FD Nieuws
+    </span>
+    <label
+      className="switch breaking-alert"
+      data-addurl="/add-breaking-alert"
+      data-deleteurl="/delete-breaking-alert"
+    >
+      <input
+        className="switch-input"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="switch-label"
+      >
+        <i
+          className="icon-check"
+        />
+        <i
+          className="icon-times"
+        />
+      </span>
+      <span
+        className="switch-handle"
+      />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`BreakingNewsAlert renders correctly 2`] = `
+<div
+  cardStyle="default"
+  className="fd-card fd-breaking-news-alert default"
+>
+  <h3
+    className="fd-typography card-h fd-breaking-news-alert-h"
+    textStyle="card-h"
+  >
+    Breaking nieuws alert
+  </h3>
+  <div
+    className="content"
+  >
+    <span
+      className="description"
+    >
+      Ontvang een e-mail alert bij belangrijk FD Nieuws
+    </span>
+    <label
+      className="switch breaking-alert"
+      data-addurl="/add-breaking-alert"
+      data-deleteurl="/delete-breaking-alert"
+    >
+      <input
+        checked={true}
+        className="switch-input"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="switch-label"
+      >
+        <i
+          className="icon-check"
+        />
+        <i
+          className="icon-times"
+        />
+      </span>
+      <span
+        className="switch-handle"
+      />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`BreakingNewsAlert renders persoonlijk correctly 1`] = `
+<div
+  cardStyle="persoonlijk"
+  className="fd-card fd-breaking-news-alert persoonlijk"
+>
+  <h3
+    className="fd-typography card-h fd-breaking-news-alert-h"
+    textStyle="card-h"
+  >
+    Breaking nieuws alert
+  </h3>
+  <div
+    className="content"
+  >
+    <span
+      className="description"
+    >
+      Ontvang een e-mail alert bij belangrijk FD Nieuws
+    </span>
+    <label
+      className="switch breaking-alert"
+      data-addurl="/add-breaking-alert"
+      data-deleteurl="/delete-breaking-alert"
+    >
+      <input
+        className="switch-input"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="switch-label"
+      >
+        <i
+          className="icon-check"
+        />
+        <i
+          className="icon-times"
+        />
+      </span>
+      <span
+        className="switch-handle"
+      />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`BreakingNewsAlert renders persoonlijk correctly 2`] = `
+<div
+  cardStyle="persoonlijk"
+  className="fd-card fd-breaking-news-alert persoonlijk"
+>
+  <h3
+    className="fd-typography card-h fd-breaking-news-alert-h"
+    textStyle="card-h"
+  >
+    Breaking nieuws alert
+  </h3>
+  <div
+    className="content"
+  >
+    <span
+      className="description"
+    >
+      Ontvang een e-mail alert bij belangrijk FD Nieuws
+    </span>
+    <label
+      className="switch breaking-alert"
+      data-addurl="/add-breaking-alert"
+      data-deleteurl="/delete-breaking-alert"
+    >
+      <input
+        checked={true}
+        className="switch-input"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="switch-label"
+      >
+        <i
+          className="icon-check"
+        />
+        <i
+          className="icon-times"
+        />
+      </span>
+      <span
+        className="switch-handle"
+      />
+    </label>
+  </div>
+</div>
+`;
