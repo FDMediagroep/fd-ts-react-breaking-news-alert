@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Card, { getAllCardStyles, CardTypes } from "@fdmg/fd-card";
 import TypoGraphy, { getAllTextStyles } from "@fdmg/fd-typography";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export interface Props {
     cardStyle: CardTypes;
@@ -14,28 +14,26 @@ export interface Props {
     unsubscribeUrl?: string;
 }
 
-export default class BreakingNewsAlert extends PureComponent<Props, any> {
-    render() {
-        return (
-            <>
-                <GlobalStyle/>
-                <Card cardStyle={this.props.cardStyle} className={`fd-breaking-news-alert${this.props.className ? ` ${this.props.className}` : ''}`}>
-                    <TypoGraphy textStyle="card-h" className="fd-breaking-news-alert-h"><h3>{this.props.title ? this.props.title : 'Breaking nieuws alert'}</h3></TypoGraphy>
-                    <div className="content">
-                        <span className="description">{this.props.description ? this.props.description : 'Ontvang een e-mail alert bij belangrijk FD Nieuws'}</span>
-                        <label className="switch breaking-alert" data-addurl={this.props.subscribeUrl ? this.props.subscribeUrl : "/add-breaking-alert"} data-deleteurl={this.props.unsubscribeUrl ? this.props.unsubscribeUrl : "/delete-breaking-alert"}>
-                            <input type="checkbox" className="switch-input" onChange={this.props.onChange} checked={this.props.checked}/>
-                            <span className="switch-label"><i className="icon-check"/><i className="icon-times"/></span>
-                            <span className="switch-handle"/>
-                        </label>
-                    </div>
-                </Card>
-            </>
-        );
-    }
+export default function BreakingNewsAlert(props: Props) {
+    return (
+        <>
+            <GlobalStyle/>
+            <Card cardStyle={props.cardStyle} className={`fd-breaking-news-alert${props.className ? ` ${props.className}` : ''}`}>
+                <TypoGraphy textStyle="card-h" className="fd-breaking-news-alert-h"><h3>{props.title ? props.title : 'Breaking nieuws alert'}</h3></TypoGraphy>
+                <div className="content">
+                    <span className="description">{props.description ? props.description : 'Ontvang een e-mail alert bij belangrijk FD Nieuws'}</span>
+                    <label className="switch breaking-alert" data-addurl={props.subscribeUrl ? props.subscribeUrl : "/add-breaking-alert"} data-deleteurl={props.unsubscribeUrl ? props.unsubscribeUrl : "/delete-breaking-alert"}>
+                        <input type="checkbox" className="switch-input" onChange={props.onChange} checked={props.checked}/>
+                        <span className="switch-label"><i className="icon-check"/><i className="icon-times"/></span>
+                        <span className="switch-handle"/>
+                    </label>
+                </div>
+            </Card>
+        </>
+    );
 }
 
-const GlobalStyle = createGlobalStyle`
+const styles = css`
 .fd-breaking-news-alert {
     .content,
     .card-h.fd-breaking-news-alert-h {
@@ -134,8 +132,10 @@ const GlobalStyle = createGlobalStyle`
 }
 `;
 
-export const BreakingNewsAlertStyle = createGlobalStyle`
-${getAllCardStyles().globalStyle.rules}
-${getAllTextStyles(['card-h']).globalStyle.rules}
-${(GlobalStyle as any).globalStyle.rules}
+export const BreakingNewsAlertStyle = css`
+${getAllCardStyles()}
+${getAllTextStyles(['card-h'])}
+${styles}
 `;
+
+const GlobalStyle = createGlobalStyle`${BreakingNewsAlertStyle}`;

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { CardTypes } from "@fdmg/fd-card";
 export interface Props {
     cardStyle: CardTypes;
@@ -10,7 +10,5 @@ export interface Props {
     title?: string;
     unsubscribeUrl?: string;
 }
-export default class BreakingNewsAlert extends PureComponent<Props, any> {
-    render(): JSX.Element;
-}
-export declare const BreakingNewsAlertStyle: import("styled-components").GlobalStyleComponent<{}, import("styled-components").DefaultTheme>;
+export default function BreakingNewsAlert(props: Props): JSX.Element;
+export declare const BreakingNewsAlertStyle: import("styled-components").FlattenSimpleInterpolation;
